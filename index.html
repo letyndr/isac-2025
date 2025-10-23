@@ -7453,6 +7453,7 @@ main {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Table-of-Contents">Table of Contents<a class="anchor-link" href="#Table-of-Contents">¶</a></h2><ul>
+<li><a href="#context">Context</a></li>
 <li><a href="#challenge">Challenge</a></li>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#data-ingestion">Data ingestion</a></li>
@@ -7466,6 +7467,21 @@ main {
 </div>
 </div>
 </div></div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e677f5e-126a-4a54-9018-8a6abacfb91c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Context">Context<a class="anchor-link" href="#Context">¶</a></h2><p>Club América, the most decorated club in Mexican football, has built its legacy on history, titles, and a passionate fan base that spans generations. Yet in an increasingly competitive football landscape, every detail matters. Optimizing how corners are executed and defended can mean the difference between sustaining dominance and falling behind.</p>
+<p>This challenge is not just about analyzing data, it’s about turning corners into goals and delivering insights that truly impact the pitch.</p>
+<div style="text-align: center;">
+<img alt="Club América" height="40%" src="logo-ame.png" width="40%"/>
+</div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=02c37726-ee80-4cf1-a5e9-7a5f14b7a5e2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7473,19 +7489,6 @@ main {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Challenge-">Challenge <a class="anchor" id="challenge"></a><a class="anchor-link" href="#Challenge-">¶</a></h2><p>Turn eight seasons of Liga MX corner kicks into simple, evidence-based insights a coach or player can use.</p>
-<p><img alt="América logo" src="logo-ame.png"/></p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ab66a1c0-23d9-414a-bdc7-922a4b31ee64">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<pre><code class="language-{image}">{image}
-</code></pre>
 </div>
 </div>
 </div>
@@ -7496,14 +7499,14 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Overview-">Overview <a class="anchor" id="challenge"></a><a class="anchor-link" href="#Overview-">¶</a></h2><ol>
+<h2 id="Strategy-overview-">Strategy overview <a class="anchor" id="challenge"></a><a class="anchor-link" href="#Strategy-overview-">¶</a></h2><ol>
 <li><p><strong>Corner effectiveness</strong>: calculate concrete KPIs (shot probability, xG per corner, goal probability, chance of conceding a counter within 10s).</p>
 </li>
 <li><p><strong>Tactical choices</strong>: “crowd 6-yard box” vs “spread” using player-density metrics and estimate marginal effects.</p>
 </li>
 <li><p><strong>Models to predict</strong> (a) shot happening, (b) shot xG, (c) opponent counter risk.</p>
 </li>
-<li><p><strong>Simulation</strong>: replacing 20% of outswingers with short corners and estimate changes in shots, xG, and counter risk.</p>
+<li><p><strong>Simulations</strong>: replacing 20% of outswingers with short corners and estimate changes in shots, xG, and counter risk.</p>
 </li>
 </ol>
 </div>
@@ -7516,7 +7519,7 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Data-ingestion">Data ingestion<a class="anchor-link" href="#Data-ingestion">¶</a></h2>
+<h2 id="Data">Data<a class="anchor-link" href="#Data">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7527,7 +7530,71 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Feature-engineering">Feature engineering<a class="anchor-link" href="#Feature-engineering">¶</a></h2>
+<h2 id="Feature-engineering">Feature engineering<a class="anchor-link" href="#Feature-engineering">¶</a></h2><h3 id="Spatial-metrics">Spatial metrics<a class="anchor-link" href="#Spatial-metrics">¶</a></h3><ul>
+<li><code>n_attackers_0_6</code>: number of attacking players inside 6-yard box at delivery</li>
+<li><code>n_attackers_6_12</code>: number inside 6–12 yards</li>
+<li><code>n_attackers_box</code>: inside penalty area</li>
+<li><code>player_density_6</code>: n_attackers_0_6 / area(6-yard box) — a density metric</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28788254-a076-43b8-901e-0f70cbeb32c8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Feature-engineering">Feature engineering<a class="anchor-link" href="#Feature-engineering">¶</a></h2><h3 id="Delivery/Execution">Delivery/Execution<a class="anchor-link" href="#Delivery/Execution">¶</a></h3><ul>
+<li><code>corner_type</code>: outswing, inswing, straight, short</li>
+<li><code>run_count</code>: number of attackers making near-post runs in first 2s</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=debf1da5-2c3a-445a-b41d-da61e2d7a5af">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Feature-engineering">Feature engineering<a class="anchor-link" href="#Feature-engineering">¶</a></h2><h3 id="Opposition">Opposition<a class="anchor-link" href="#Opposition">¶</a></h3><ul>
+<li><code>n_defenders_0_6</code>: number of defensive players inside 6-yard box</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d9895dde-54c2-447d-9069-9a1db299855a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Feature-engineering">Feature engineering<a class="anchor-link" href="#Feature-engineering">¶</a></h2><h3 id="Context">Context<a class="anchor-link" href="#Context">¶</a></h3><ul>
+<li><code>score_state</code>: leading/tied/behind</li>
+<li><code>match_minute_bin</code>: early, standard, late</li>
+<li><code>home</code>/<code>away</code>: The team plays home or away</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bc1662d5-bfd2-48b6-9b0a-cc218384d179">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Feature-engineering">Feature engineering<a class="anchor-link" href="#Feature-engineering">¶</a></h2><h3 id="Outcomes">Outcomes<a class="anchor-link" href="#Outcomes">¶</a></h3><ul>
+<li><code>shot_happened</code>: yes/no</li>
+<li><code>shot_xG</code>: 0 if no shot</li>
+<li><code>goal</code>: yes/no</li>
+<li><code>opp_shot_within_10s</code>: yes/no — measures counter risk</li>
+<li><code>opp_goal_within_10s</code>: yes/no</li>
+</ul>
 </div>
 </div>
 </div>
@@ -7538,7 +7605,29 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Descriptive-analysis">Descriptive analysis<a class="anchor-link" href="#Descriptive-analysis">¶</a></h2>
+<h2 id="Descriptive-analysis-and-Quantification">Descriptive analysis and Quantification<a class="anchor-link" href="#Descriptive-analysis-and-Quantification">¶</a></h2><p>These are actionable insights, we summarize key performance metrics as single, easy-to-interpret numbers:</p>
+<ul>
+<li>Shots per 100 corners, segmented by corner type and crowd density (crowd_index quartiles).</li>
+<li>xG per corner, analyzed by delivery type and crowd_index.</li>
+<li>Goal rate, grouped by the number of attackers inside the 6-yard box (0, 1–2, 3+).</li>
+<li>Counter-attack rate (opponent shot within 10 seconds), compared between short vs. long corners and outswingers vs. inswingers.</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=eadeeb92">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Descriptive-analysis-and-Quantification">Descriptive analysis and Quantification<a class="anchor-link" href="#Descriptive-analysis-and-Quantification">¶</a></h2><h3 id="Statistical-validation-%F0%9F%93%88">Statistical validation 📈<a class="anchor-link" href="#Statistical-validation-%F0%9F%93%88">¶</a></h3><p>To ensure the observed differences are meaningful and not due to chance, we apply a bootstrap statistical test.
+Compute bootstrapped 95% confidence intervals (CIs) for each key rate.
+Compare tactical strategies (e.g., crowded vs. spread setups) using bootstrap-derived p-values, providing a robust, non-parametric measure of significance.</p>
+<div class="alert alert-block alert-info">
+⚽ This approach gives coaches statistically sound evidence for which corner strategies truly make a difference on the pitch.
+</div>
 </div>
 </div>
 </div>
@@ -7600,6 +7689,10 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Improvements">Improvements<a class="anchor-link" href="#Improvements">¶</a></h3><ul>
+<li>Analyze the other features of other teams.</li>
+<li>¿qué pasa con los corners que generan penales, tiros libres, tarjetas?</li>
+</ul>
 </div>
 </div>
 </div>
